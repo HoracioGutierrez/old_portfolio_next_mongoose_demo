@@ -1,5 +1,8 @@
 import { wrapper } from '../api/store'
 import MainCard from "../components/MainCard"
+import MainChat from '../components/MainChat'
+import MainFooter from '../components/MainFooter'
+import "./global.scss"
 
 const CustomApp = ({Component,pageProps}) => {
 
@@ -8,6 +11,8 @@ const CustomApp = ({Component,pageProps}) => {
             <MainCard>
                 <Component {...pageProps}/>
             </MainCard>
+            <MainChat/>
+            <MainFooter/>
         </>
     )
 }

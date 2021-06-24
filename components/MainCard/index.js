@@ -1,6 +1,8 @@
-const MainCard = () => {
+const MainCard = ({children}) => {
     return (
-        <p>Main Card</p>
+        <main>
+            {children}
+        </main>
     );
 }
 
