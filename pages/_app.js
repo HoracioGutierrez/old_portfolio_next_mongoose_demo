@@ -1,7 +1,15 @@
-const CustomApp = ({Component}) => {
+import { wrapper } from '../api/store'
+import MainCard from "../components/MainCard"
+
+const CustomApp = ({Component,pageProps}) => {
+
     return ( 
-        <Component/>
+        <>
+            <MainCard>
+                <Component {...pageProps}/>
+            </MainCard>
+        </>
     )
 }
  
-export default CustomApp;
+export default wrapper.withRedux(CustomApp);
