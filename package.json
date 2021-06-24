@@ -8,5 +8,10 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^5.12.14",
+    "react-redux": "^7.2.4",
+    "redux": "^4.1.0"
+  }
 }
