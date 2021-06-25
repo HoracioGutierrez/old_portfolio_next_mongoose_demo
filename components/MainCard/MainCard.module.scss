@@ -2,6 +2,7 @@
     width: calc(100% - 20px);
     margin: auto;
     transition: all 0.3s ease!important;
+    overflow: visible!important;
 
     @media screen and (min-width:520px){
         width: 500px;

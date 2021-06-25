@@ -3,12 +3,12 @@ import MainCard from "../components/MainCard"
 import MainChat from '../components/MainChat'
 import MainNotification from '../components/MainNotification'
 import MainFooter from '../components/MainFooter'
-import { useSelector } from 'react-redux'
+import useDark from '../hooks/useDark'
 import "./global.scss"
 
 const CustomApp = ({ Component, pageProps }) => {
 
-    const dark = useSelector(({ dark }) => dark)
+    const dark = useDark()
 
     return (
         <div id="container" className={`${dark ? "dark" : "light"}`}>

@@ -5,6 +5,7 @@ import CardFooter from '../CardFooter';
 import style from "./MainCard.module.scss"
 
 const MainCard = ({children}) => {
+    
     return (
         <Card raised={true} elevation={2} component="main" className={style.mainCard}>
             <CardHeader/>
