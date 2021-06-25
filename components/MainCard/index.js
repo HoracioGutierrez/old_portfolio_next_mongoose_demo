@@ -1,12 +1,18 @@
 import Card from '@material-ui/core/Card';
+import CardHeader from '../CardHeader';
+import CardContent from '../CardContent';
+import CardFooter from '../CardFooter';
+import style from "./MainCard.module.scss"
 
 const MainCard = ({children}) => {
     return (
-        <main>
-            <Card raised={true} elevation={2}>
+        <Card raised={true} elevation={2} component="main" className={style.mainCard}>
+            <CardHeader/>
+            <CardContent>
                 {children}
-            </Card>
-        </main>
+            </CardContent>
+            <CardFooter/>
+        </Card>
     );
 }
 
