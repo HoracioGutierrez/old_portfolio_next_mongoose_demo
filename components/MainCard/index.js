@@ -1,7 +1,11 @@
+import Card from '@material-ui/core/Card';
+
 const MainCard = ({children}) => {
     return (
         <main>
-            {children}
+            <Card raised={true} elevation={2}>
+                {children}
+            </Card>
         </main>
     );
 }

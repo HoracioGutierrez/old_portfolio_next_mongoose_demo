@@ -1,7 +1,7 @@
 const MainFooter = () => {
     return (
         <footer>
-            Main Footer
+            <p>&copy; Copyright 2021 - Horacio Gutierrez</p>
         </footer>
     );
 }

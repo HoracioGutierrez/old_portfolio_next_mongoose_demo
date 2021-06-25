@@ -3,20 +3,23 @@ import MainCard from "../components/MainCard"
 import MainChat from '../components/MainChat'
 import MainNotification from '../components/MainNotification'
 import MainFooter from '../components/MainFooter'
+import { useSelector } from 'react-redux'
 import "./global.scss"
 
-const CustomApp = ({Component,pageProps}) => {
+const CustomApp = ({ Component, pageProps }) => {
 
-    return ( 
-        <>
+    const dark = useSelector(({ dark }) => dark)
+
+    return (
+        <div id="container" className={`${dark ? "dark" : "light"}`}>
             <MainCard>
-                <Component {...pageProps}/>
+                <Component {...pageProps} />
             </MainCard>
-            <MainChat/>
-            <MainNotification/>
-            <MainFooter/>
-        </>
+            <MainChat />
+            <MainNotification />
+            <MainFooter />
+        </div>
     )
 }
- 
+
 export default wrapper.withRedux(CustomApp);
