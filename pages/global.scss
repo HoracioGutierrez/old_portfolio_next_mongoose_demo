@@ -23,4 +23,12 @@ body,
     &.dark {
         background-image: linear-gradient(to bottom right, #1e2f5c, #2e0a41);
     }
+
+    @media screen and (min-width : 800px) {
+        padding-top: 120px;
+    }
+    
+    @media screen and (min-width : 1100px) {
+        padding-top: 140px;
+    }
 }
