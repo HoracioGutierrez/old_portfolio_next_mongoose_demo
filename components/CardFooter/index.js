@@ -1,13 +1,17 @@
+import { useState } from "react"
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
+import Menu from "@material-ui/core/Menu"
+import MenuItem from '@material-ui/core/MenuItem'
 import style from "./CardFooter.module.scss"
 import { useDispatch } from 'react-redux';
-import { showNotification } from '../../api/actions';
+import { darkToggle, showNotification } from '../../api/actions';
 
 const CardFooter = () => {
 
     const dispatch = useDispatch()
+    const [anchorEl,setAnchorEl] = useState(null) 
 
     const handleCopyUrl = () => {
         try {
@@ -19,8 +23,21 @@ const CardFooter = () => {
             document.body.removeChild(el)
             dispatch(showNotification("Se copio la url!"))
         } catch (error) {
-            dispatch(showNotification("No se pudo copiar la url, vuelva a intentarlo!","error"))
+            dispatch(showNotification("No se pudo copiar la url, vuelva a intentarlo!", "error"))
         }
+    }
+
+    const handleOpen = e => {
+        setAnchorEl(e.currentTarget)
+    }
+
+    const handleClose = () => {
+        setAnchorEl(null)
+    }
+
+    const handleToggleDark = () => {
+        console.log("Test")
+        dispatch(darkToggle())
     }
 
     return (
@@ -34,7 +51,19 @@ const CardFooter = () => {
                         <Icon>share</Icon>
                     </IconButton>
                 </div>
-                <IconButton className={style.cardFooterButton}>
+                <Menu
+                    keepMounted 
+                    id="dark-menu"
+                    getContentAnchorEl={null}
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                    anchorOrigin={{ vertical: "top", horizontal: "left" }}
+                    transformOrigin={{ vertical: "bottom", horizontal: "right" }}
+                >
+                    <MenuItem onClick={handleToggleDark}>Modo Dark</MenuItem>
+                </Menu>
+                <IconButton onClick={handleOpen} className={style.cardFooterButton}>
                     <Icon>more_vert</Icon>
                 </IconButton>
             </CardActions>

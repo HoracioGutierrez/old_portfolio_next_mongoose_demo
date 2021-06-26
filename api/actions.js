@@ -1,4 +1,6 @@
-import { CARD_TOGGLE, NOTIFICATION_HIDE, NOTIFICATION_SHOW } from "./actionConstants"
+import { CARD_TOGGLE, DARK_TOGGLE, NOTIFICATION_HIDE, NOTIFICATION_SHOW } from "./actionConstants"
+
+export const darkToggle = () => ({ type: DARK_TOGGLE })
 
 export const cardToggle = () => ({ type: CARD_TOGGLE })
 
