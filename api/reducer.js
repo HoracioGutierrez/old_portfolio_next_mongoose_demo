@@ -1,21 +1,42 @@
-import { CARD_TOGGLE, DARK_TOGGLE } from "./actionConstants"
+import { CARD_TOGGLE, DARK_TOGGLE, NOTIFICATION_HIDE, NOTIFICATION_SHOW } from "./actionConstants"
 
 export const init = {
-    dark : false,
-    card_open : true
+    dark: false,
+    card_open: true,
+    notification: {
+        open: false,
+        text: "",
+        type: "info",
+        time: 2000
+    }
 }
 
 const reducer = (state = init, action) => {
     switch (action.type) {
-        case CARD_TOGGLE : 
+        case NOTIFICATION_HIDE:
             return {
                 ...state,
-                card_open : !state.card_open
+                notification : { ...init.notification }
             }
-        case DARK_TOGGLE : 
+        case NOTIFICATION_SHOW:
             return {
                 ...state,
-                dark : !state.dark
+                notification: {
+                    open: true,
+                    text: action.text,
+                    type: action.tipo,
+                    time: action.time
+                }
+            }
+        case CARD_TOGGLE:
+            return {
+                ...state,
+                card_open: !state.card_open
+            }
+        case DARK_TOGGLE:
+            return {
+                ...state,
+                dark: !state.dark
             }
         default:
             return init
