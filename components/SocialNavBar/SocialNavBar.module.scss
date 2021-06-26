@@ -1,0 +1,16 @@
+.socialNavBar {
+    display: flex;
+    position: relative;
+    transition: all 0.3s ease;
+    align-items: center;
+    margin: 1rem 0;
+
+    .socialIcon {
+        margin: 0 0.4rem;
+        
+    }
+
+    @media screen and (min-width : 1100px) {
+        margin: 1.5rem 0
+    }
+}

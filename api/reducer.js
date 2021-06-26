@@ -1,10 +1,18 @@
+import { CARD_TOGGLE, DARK_TOGGLE } from "./actionConstants"
+
 export const init = {
-    dark : false
+    dark : false,
+    card_open : true
 }
 
 const reducer = (state = init, action) => {
     switch (action.type) {
-        case "DARK_TOGGLE" : 
+        case CARD_TOGGLE : 
+            return {
+                ...state,
+                card_open : !state.card_open
+            }
+        case DARK_TOGGLE : 
             return {
                 ...state,
                 dark : !state.dark
