@@ -1,6 +1,13 @@
+import Head from 'next/head'
+
 const Landing = () => {
     return (
-        <h1>Landing</h1>
+        <>
+            <Head>
+                <title>HG - Home</title>
+            </Head>
+            <h1>Landing</h1>
+        </>
     )
 }
  

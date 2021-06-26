@@ -2,7 +2,7 @@ import { CARD_TOGGLE, DARK_TOGGLE, NOTIFICATION_HIDE, NOTIFICATION_SHOW } from "
 
 export const init = {
     dark: false,
-    card_open: true,
+    card_open: false,
     notification: {
         open: false,
         text: "",

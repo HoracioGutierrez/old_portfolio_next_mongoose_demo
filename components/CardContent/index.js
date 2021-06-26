@@ -7,6 +7,7 @@ import style from "./CardContent.module.scss"
 import { useState } from "react";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useRouter } from 'next/router'
+import { useEffect } from "react";
 
 const Content = ({ children }) => {
 
@@ -16,6 +17,10 @@ const Content = ({ children }) => {
     const router = useRouter()
     const [rutas] = useState(["/", "/demos"])
 
+    useEffect(()=>{
+        const ruta = rutas.indexOf(router.pathname)
+        setTab(ruta)
+    },[])
 
     const handleChange = (e, tab) => {
         setTab(tab)
