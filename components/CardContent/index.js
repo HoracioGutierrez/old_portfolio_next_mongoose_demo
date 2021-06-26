@@ -7,9 +7,9 @@ const CardContent = ({children}) => {
 
     return (
         <Collapse in={!open}>
-            <section>
+            <main>
                 {children}
-            </section>
+            </main>
         </Collapse>
     );
 }

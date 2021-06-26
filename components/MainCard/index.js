@@ -7,7 +7,7 @@ import style from "./MainCard.module.scss"
 const MainCard = ({children}) => {
     
     return (
-        <Card raised={true} elevation={2} component="main" className={style.mainCard}>
+        <Card raised={true} elevation={2} component="section" className={style.mainCard}>
             <CardHeader/>
             <CardContent>
                 {children}

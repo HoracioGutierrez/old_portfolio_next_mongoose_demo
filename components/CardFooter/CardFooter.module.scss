@@ -1,0 +1,19 @@
+.cardFooter {
+
+}
+
+.cardFooterContainer {
+    padding: 10px!important;
+    justify-content: space-between;
+
+    .cardFooterDivider {
+        button {
+            margin-right: 10px;
+        }
+    }
+
+    .cardFooterButton {
+        padding: 0!important;
+        color: black!important;
+    }
+}
