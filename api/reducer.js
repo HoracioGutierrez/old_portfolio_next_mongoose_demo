@@ -1,4 +1,4 @@
-import { CARD_TOGGLE, DARK_TOGGLE, DEMOS_REQUEST_ERROR, DEMOS_REQUEST_PENDING, DEMOS_REQUEST_SUCCESS, NOTIFICATION_HIDE, NOTIFICATION_SHOW } from "./actionConstants"
+import { CARD_TOGGLE, DARK_TOGGLE, DEMOS_REQUEST_ERROR, DEMOS_REQUEST_PENDING, DEMOS_REQUEST_SUCCESS, DEMO_SET_CURRENT, NOTIFICATION_HIDE, NOTIFICATION_SHOW } from "./actionConstants"
 
 export const init = {
     dark: false,
@@ -14,12 +14,21 @@ export const init = {
             pending : false,
             error : ""
         },
-        list : []
+        list : [],
+        current : {}
     }
 }
 
 const reducer = (state = init, action) => {
     switch (action.type) {
+        case DEMO_SET_CURRENT:
+            return {
+                ...state,
+                demos : {
+                    ...state.demos,
+                    current : action.current
+                }
+            }
         case DEMOS_REQUEST_ERROR :
             return {
                 ...state,

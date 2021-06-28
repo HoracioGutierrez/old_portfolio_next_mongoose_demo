@@ -1,0 +1,39 @@
+.demoItem {
+
+    display: flex;
+
+    .demoItemThumbnail {
+        width: 150px;
+        min-width: 150px;
+        background-color: grey;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+
+    .demoItemDetails {
+
+        padding-left: 10px;
+
+        h2 {
+            font-size: 22px;
+        }
+
+        .demoItemSubtitle {
+            font-size: 16px;
+            color: grey;
+        }
+
+        .demoItemDesc {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .demoItemButton {
+            margin-left: auto;
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+}
