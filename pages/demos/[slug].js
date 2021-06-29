@@ -1,29 +1,45 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from 'next/router'
+import axios from "axios";
+import { demoDetailRequestError, demoDetailRequestPending, demoDetailRequestSuccess, showNotification } from "../../api/actions";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import DemoDetails from "../../components/DemoDetails"
 
 const DemoDetail = () => {
 
-    const current_demo = useSelector(({demos:{current}})=>current)
+    const dispatch = useDispatch()
+    const current_demo = useSelector(({ demos: { current } }) => current)
+    const router = useRouter()
+    let url = `/api/demos/${router.query.slug}`
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        const demo_length = Object.keys(current_demo).length
+        if (router.query.slug) {
 
-        if( demo_length === 0){
-            console.log("No hay demo actual guardado")
-        }else{
-            if(demo_length === 8){
-                console.log("Hay demo corto")
-            }else{
-                console.log("Ya hay demo")
-            }
+            url += current_demo.requested ? "?type=short" : "?type=full"
+            dispatch(demoDetailRequestPending())
+            axios
+                .get(url)
+                .then(({ data: res }) => {
+                    const { data: demo } = res
+                    dispatch(demoDetailRequestSuccess(demo))
+                })
+                .catch(error => {
+                    dispatch(showNotification("No se pudo obtener el detalle del demo. Por favor vuelva a intentarlo"))
+                    dispatch(demoDetailRequestError(error))
+                })
+
         }
-        
-    },[current_demo])
+
+    }, [router.query.slug])
 
     return (
         <>
-            <h2></h2>
+            {current_demo.full
+                ? <DemoDetails demo={current_demo} />
+                : <CircularProgress color="primary" />
+            }
         </>
     );
 }

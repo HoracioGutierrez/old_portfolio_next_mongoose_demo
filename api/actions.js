@@ -1,4 +1,4 @@
-import { CARD_TOGGLE, DARK_TOGGLE, DEMOS_REQUEST_ERROR, DEMOS_REQUEST_PENDING, DEMOS_REQUEST_SUCCESS, DEMO_SET_CURRENT, NOTIFICATION_HIDE, NOTIFICATION_SHOW } from "./actionConstants"
+import { CARD_TOGGLE, DARK_TOGGLE, DEMOS_REQUEST_ERROR, DEMOS_REQUEST_PENDING, DEMOS_REQUEST_SUCCESS, DEMO_DETAIL_REQUEST_ERROR, DEMO_DETAIL_REQUEST_PENDING, DEMO_DETAIL_REQUEST_SUCCESS, DEMO_SET_CURRENT, NOTIFICATION_HIDE, NOTIFICATION_SHOW } from "./actionConstants"
 
 export const darkToggle = () => ({ type: DARK_TOGGLE })
 
@@ -19,4 +19,10 @@ export const demoRequestSuccess = demos => ({ type: DEMOS_REQUEST_SUCCESS, demos
 
 export const demoRequestError = error => ({ type: DEMOS_REQUEST_ERROR, error })
 
-export const demoSetCurrent = demo => ({ type: DEMO_SET_CURRENT, current : demo })
+export const demoSetCurrent = demo => ({ type: DEMO_SET_CURRENT, current: demo })
+
+export const demoDetailRequestPending = () => ({ type: DEMO_DETAIL_REQUEST_PENDING })
+
+export const demoDetailRequestSuccess = details => ({ type: DEMO_DETAIL_REQUEST_SUCCESS , details })
+
+export const demoDetailRequestError = error => ({ type: DEMO_DETAIL_REQUEST_ERROR , error })
