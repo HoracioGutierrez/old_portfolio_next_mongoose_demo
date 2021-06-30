@@ -5,7 +5,7 @@ const map = {
     "contador-simple" : "ContadorSimple"
 }
 
-const getComponent = (ns) =>  dynamic(()=>import(`../../components/playground/${ns}/index`))
+const getComponent = (ns) =>  dynamic(()=>import(`../../components/playground/${ns}/index`),{ssr:false})
 
 const PlaygroundMainContent = () => {
 
