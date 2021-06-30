@@ -22,7 +22,7 @@ export async function getStaticProps({params}) {
     return {props:{demo}}
 } */
 
-export async function getServerSideProps(ctx){
+/* export async function getServerSideProps(ctx){
     const host = ctx.req.headers.host
     const protocolo = ctx.req.connection.encrypted ? "https" : "http"
     const slug = ctx.params.slug
@@ -31,20 +31,20 @@ export async function getServerSideProps(ctx){
     return {
         props : {demo : demo.data}
     }
-}
+} */
 
 const DemoDetail = () => {
 
     const dispatch = useDispatch()
     const current_demo = useSelector(({ demos: { current } }) => current)
     const router = useRouter()
-    let url = `/api/demos/${router.query.slug}`
+    let url = `/api/demos/details?slug=${router.query.slug}`
 
     useEffect(() => {
 
         if (router.query.slug) {
 
-            url += current_demo.requested ? "?type=short" : "?type=full"
+            url += current_demo.requested ? "&type=short" : "&type=full"
             dispatch(demoDetailRequestPending())
             axios
                 .get(url)
