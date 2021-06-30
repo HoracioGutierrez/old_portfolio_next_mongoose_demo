@@ -20,7 +20,7 @@ const DemoListItem = ({demo}) => {
                 <p className={style.demoItemSubtitle}>{demo.subtitle}</p>
                 <p className={style.demoItemDesc}>{demo.short_desc}</p>
                 <Button color="primary"  onClick={handleClick} className={style.demoItemButton}>
-                    <Link href={`/demos/${demo.slug}`}>VER DETALLE</Link>
+                    <Link href={`/demos/${demo.slug}`} as={`/demos/${demo.slug}`}>VER DETALLE</Link>
                 </Button> 
             </div>
         </article>
