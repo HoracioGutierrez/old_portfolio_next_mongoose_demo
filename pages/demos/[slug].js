@@ -6,9 +6,9 @@ import { demoDetailRequestError, demoDetailRequestPending, demoDetailRequestSucc
 import CircularProgress from '@material-ui/core/CircularProgress';
 import DemoDetails from "../../components/DemoDetails"
 
-export async function getStaticPaths(test){
+/* export async function getStaticPaths(test){
     //const res = await fetch("http://localhost:3000/api/demos")
-    const res = await fetch(`http://localhost/api/demos`)
+    const res = await fetch(`https://localhost/api/demos`)
     const demos = await res.json()
     const paths = demos.data.map(demo=>({params : {slug:demo.slug}}))
 
@@ -20,6 +20,17 @@ export async function getStaticProps({params}) {
     const res = await fetch(`http://localhost:3000/api/demos/${params.slug}`)
     const demo = await res.json()
     return {props:{demo}}
+} */
+
+export async function getServerSideProps(ctx){
+    const host = ctx.req.headers.host
+    const protocolo = ctx.req.connection.encrypted ? "https" : "http"
+    const slug = ctx.params.slug
+    const res = await fetch(`${protocolo}://${host}/api/demos/${slug}`)
+    const demo = await res.json()
+    return {
+        props : {demo : demo.data}
+    }
 }
 
 const DemoDetail = () => {
