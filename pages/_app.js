@@ -3,6 +3,7 @@ import MainCard from "../components/MainCard"
 import MainChat from '../components/MainChat'
 import MainNotification from '../components/MainNotification'
 import MainFooter from '../components/MainFooter'
+import PlaygroundMainContainer from '../components/PlaygroundMainHeader'
 import useDark from '../hooks/useDark'
 import "./global.scss"
 import { useRouter } from 'next/router'
@@ -14,7 +15,10 @@ const CustomApp = ({ Component, pageProps }) => {
 
     if(router.pathname.includes("playground")){
         return (
-            <Component {...pageProps}/>
+            <div id="playground-container">
+                <PlaygroundMainContainer/>
+                <Component {...pageProps}/>
+            </div>
         )
     }else{
         return (

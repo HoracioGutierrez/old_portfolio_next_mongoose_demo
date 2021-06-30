@@ -13,11 +13,13 @@ const DemoDetails = ({ demo }) => {
             <h2 className={style.title}>{demo.title}</h2>
             <h3 className={style.subtitle}>{demo.subtitle}</h3>
             <div id="detail-image" className={style.image} style={{ backgroundImage: `url("/${demo.image_url}")` }}></div>
-            <Button color="primary" variant="contained">
-                <Link href={`/playground/${demo.slug}`}>
-                    ABRIR DEMO
-                </Link>
-            </Button>
+            <nav className={style.nav}>
+                <Button className={style.button} color="primary" variant="contained">
+                    <Link href={`/playground/${demo.slug}`}>
+                        ABRIR DEMO
+                    </Link>
+                </Button>
+            </nav>
             {demo.long_desc.map(desc => {
                 if (desc.type == "normal") {
                     return <p className={`${style.detailText} ${style.normal}`}>{desc.text}</p>

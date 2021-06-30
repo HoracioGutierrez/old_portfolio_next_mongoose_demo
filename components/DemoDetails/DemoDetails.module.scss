@@ -23,3 +23,15 @@
 .normal , .code {
     font-size: 14px;
 }
+
+.button {
+    a {
+        color: white;
+        text-decoration: none;
+    }
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+}
