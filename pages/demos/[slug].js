@@ -6,6 +6,21 @@ import { demoDetailRequestError, demoDetailRequestPending, demoDetailRequestSucc
 import CircularProgress from '@material-ui/core/CircularProgress';
 import DemoDetails from "../../components/DemoDetails"
 
+export async function getStaticPaths(){
+
+    const res = await fetch("http://localhost:3000/api/demos")
+    const demos = await res.json()
+    const paths = demos.data.map(demo=>({params : {slug:demo.slug}}))
+
+    return {paths,fallback:false}
+}
+
+export async function getStaticProps({params}) {
+    const res = await fetch(`http://localhost:3000/api/demos/${params.slug}`)
+    const demo = await res.json()
+    return {props:{demo}}
+}
+
 const DemoDetail = () => {
 
     const dispatch = useDispatch()
