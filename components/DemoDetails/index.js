@@ -3,6 +3,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { anOldHope } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import Button from '@material-ui/core/Button';
 import Link from "next/link"
+import Head from 'next/head'
 
 
 const DemoDetails = ({ demo }) => {
@@ -10,6 +11,9 @@ const DemoDetails = ({ demo }) => {
 
     return (
         <>
+            <Head>
+                <title>HG - Demos</title>
+            </Head>
             <h2 className={style.title}>{demo.title}</h2>
             <h3 className={style.subtitle}>{demo.subtitle}</h3>
             <div id="detail-image" className={style.image} style={{ backgroundImage: `url("/${demo.image_url}")` }}></div>
