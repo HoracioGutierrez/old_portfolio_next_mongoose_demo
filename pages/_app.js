@@ -28,7 +28,7 @@ const CustomApp = ({ Component, pageProps }) => {
                 </MainCard>
                 {/* <MainChat /> */}
                 <MainNotification />
-                {/* <MainFooter /> */}
+                <MainFooter />
             </div>
         )
     }
