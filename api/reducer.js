@@ -12,9 +12,12 @@ export const init = {
     demos : {
         request : {
             pending : false,
-            error : ""
+            error : "",
+            requested : false,
+            full : false
         },
         list : [],
+        filtered : [],
         current : {
             requested : false,
             pending : false,
@@ -93,9 +96,12 @@ const reducer = (state = init, action) => {
                     ...state.demos,
                     request : {
                         pending : false,
-                        error : ""
+                        error : "",
+                        requested : true,
+                        full : true
                     },
-                    list : action.demos
+                    list : action.demos,
+                    filtered : action.demos
                 }
             }
         case DEMOS_REQUEST_PENDING :

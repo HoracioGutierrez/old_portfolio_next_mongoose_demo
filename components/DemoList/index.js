@@ -1,10 +1,6 @@
-import { useSelector } from "react-redux";
 import DemoListItem from "../DemoListItem";
 
-const DemoList = () => {
-    
-    const {list} = useSelector(({demos})=>demos)
-
+const DemoList = ({list}) => {
     return (
         <section id="demo-list">
             {list.map(demo=>  <DemoListItem key={demo.id} demo={demo}/> )}
