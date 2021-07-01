@@ -19,7 +19,8 @@ handler.get(async (req, res) => {
             "vote_data.current_votes": 1,
             difficulty: 1,
             short_desc: 1,
-            thumbnail_url: 1
+            thumbnail_url: 1,
+            createdAt : 1
         }
 
         const demos = await Demo.find(query, projection)

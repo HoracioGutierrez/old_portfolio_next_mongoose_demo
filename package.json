@@ -20,6 +20,7 @@
     "highlight.js": "^11.0.1",
     "markdown-it": "^12.0.6",
     "material-design-icons": "^3.0.1",
+    "moment": "^2.29.1",
     "mongoose": "^5.12.14",
     "next": "^11.0.1",
     "next-connect": "^0.10.1",

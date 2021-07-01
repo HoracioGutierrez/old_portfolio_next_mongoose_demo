@@ -1,7 +1,14 @@
 .cardContent {
+
     padding: 10px!important;
+    padding-top: 20px!important;
+    padding-bottom: 20px!important;
     
     .tabItem {
         padding : 0!important;
     }
+}
+
+.tabsContainer { 
+    box-shadow: 0 2px 4px rgba($color: #000000, $alpha: 0.3);
 }

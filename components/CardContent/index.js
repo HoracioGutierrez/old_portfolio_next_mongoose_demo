@@ -36,6 +36,7 @@ const Content = ({ children }) => {
                 indicatorColor="primary"
                 textColor="primary"
                 variant={!matches ? "fullWidth" : "standard"}
+                className={style.tabsContainer}
             >
                 <Tab label="Bio" id="bio" className={style.tabItem} />
                 <Tab label="Demos" id="demos" />
