@@ -7,7 +7,7 @@ const handler = nc()
 
 handler.post(async (req, res) => {
 
-    const { slug } = req.query
+    const { slug } = req.body
 
     const ip = requestIp.getClientIp(req)
 

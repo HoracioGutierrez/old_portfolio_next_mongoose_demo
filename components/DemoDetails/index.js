@@ -38,7 +38,7 @@ const DemoDetails = ({ demo }) => {
 
     const handleLike = () => {
         axios
-            .post(`/api/like/${demo.slug}`)
+            .post(`/api/like`,{slug:demo.slug})
             .then(({ data: res }) => {
                 console.log(res)
                 dispatch(sendLike())
