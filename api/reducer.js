@@ -1,4 +1,4 @@
-import { CARD_TOGGLE, DARK_TOGGLE, DEMOS_REQUEST_ERROR, DEMOS_REQUEST_PENDING, DEMOS_REQUEST_SUCCESS, DEMO_DETAIL_REQUEST_ERROR, DEMO_DETAIL_REQUEST_PENDING, DEMO_DETAIL_REQUEST_SUCCESS, DEMO_SET_CURRENT, NOTIFICATION_HIDE, NOTIFICATION_SHOW } from "./actionConstants"
+import { CARD_TOGGLE, DARK_TOGGLE, DEMOS_REQUEST_ERROR, DEMOS_REQUEST_PENDING, DEMOS_REQUEST_SUCCESS, DEMO_DETAIL_REQUEST_ERROR, DEMO_DETAIL_REQUEST_PENDING, DEMO_DETAIL_REQUEST_SUCCESS, DEMO_SET_CURRENT, LIKE, NOTIFICATION_HIDE, NOTIFICATION_SHOW, UNLIKE } from "./actionConstants"
 
 export const init = {
     dark: false,
@@ -29,6 +29,14 @@ export const init = {
 
 const reducer = (state = init, action) => {
     switch (action.type) {
+        case UNLIKE : 
+            return {
+                ...state
+            }
+        case LIKE : 
+            return {
+                ...state
+            }
         case DEMO_DETAIL_REQUEST_ERROR : 
             return {
                 ...state,
