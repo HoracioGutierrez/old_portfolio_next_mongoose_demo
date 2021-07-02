@@ -12,7 +12,7 @@
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
-    margin: 30px 0 30px;
+    margin: 30px 0 10px;
 
     @media screen and (min-width:800px) {
         height: 350px;
@@ -41,7 +41,9 @@
 
 .nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
 }
 
 .date {
