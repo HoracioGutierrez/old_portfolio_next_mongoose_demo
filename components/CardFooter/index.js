@@ -38,7 +38,6 @@ const CardFooter = () => {
     }
 
     const handleToggleDark = () => {
-        console.log("Test")
         dispatch(darkToggle())
     }
 
