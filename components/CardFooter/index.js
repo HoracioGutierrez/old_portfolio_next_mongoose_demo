@@ -7,11 +7,13 @@ import MenuItem from '@material-ui/core/MenuItem'
 import style from "./CardFooter.module.scss"
 import { useDispatch } from 'react-redux';
 import { darkToggle, showNotification } from '../../api/actions';
+import useDark from "../../hooks/useDark";
 
 const CardFooter = () => {
 
     const dispatch = useDispatch()
     const [anchorEl,setAnchorEl] = useState(null) 
+    const dark = useDark()
 
     const handleCopyUrl = () => {
         try {
@@ -41,7 +43,7 @@ const CardFooter = () => {
     }
 
     return (
-        <footer className={style.cardFooter}>
+        <footer className={`${style.cardFooter} ${dark ? style.dark : style.light }`}>
             <CardActions className={style.cardFooterContainer}>
                 <div className={style.cardFooterDivider}>
                     <IconButton className={style.cardFooterButton}>

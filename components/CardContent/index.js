@@ -8,9 +8,11 @@ import { useState } from "react";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useRouter } from 'next/router'
 import { useEffect } from "react";
+import useDark from "../../hooks/useDark";
 
 const Content = ({ children }) => {
 
+    const dark = useDark()
     const open = useSelector(({ card_open }) => card_open)
     const new_tab = useSelector(({ new_tab }) => new_tab)
     const [tab, setTab] = useState(0)
@@ -36,7 +38,7 @@ const Content = ({ children }) => {
     }
 
     return (
-        <Collapse in={!open}>
+        <Collapse in={!open} className={`${dark ? style.dark : style.light }`}>
             <Tabs
                 value={tab}
                 onChange={handleChange}
@@ -49,7 +51,7 @@ const Content = ({ children }) => {
                 <Tab label="Demos" id="demos" />
                 {new_tab.show && <Tab label={new_tab.title}/>}
             </Tabs>
-            <CardContent component="main" className={style.cardContent}>
+            <CardContent component="main" className={`${style.cardContent}`}>
                 {children}
             </CardContent>
         </Collapse>
