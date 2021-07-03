@@ -25,15 +25,15 @@ const DemoDetails = ({ demo }) => {
     const [open, setOpen] = useState(false)
     const dispatch = useDispatch()
 
-    useEffect(()=>{
+    useEffect(() => {
 
         dispatch(showNewTab(demo.title))
 
         return () => {
             dispatch(hideNewTab())
         }
-        
-    },[])
+
+    }, [])
 
     const formatedDate = (date) => {
         return moment(date).format("Do [de] MMMM, YYYY")
@@ -79,17 +79,24 @@ const DemoDetails = ({ demo }) => {
             <p className={style.date}>Fecha de creación : {formatedDate(demo.createdAt)}</p>
             <div id="detail-image" className={style.image} style={{ backgroundImage: `url("/${demo.image_url}")` }}></div>
             <nav className={style.nav}>
-                <div onMouseEnter={handleOpenTooptip} onMouseLeave={handleCloseTooltip}>
+                <div onMouseEnter={handleOpenTooptip} onMouseLeave={handleCloseTooltip} className={style.first}>
                     <Tooltip title={`Dificultad : ${demo.difficulty}`} open={open}>
                         <Rating value={demo.difficulty} readOnly />
                     </Tooltip>
                 </div>
-                <Button className={style.button} color="primary" variant="contained">
-                    <Link href={`/playground/${demo.slug}`}>
-                        ABRIR DEMO
-                    </Link>
-                </Button>
-                <div>
+                <div className={style.second}>
+                    <Button className={style.button} color="primary" variant="contained">
+                        <a href={demo.repository_url} target="_blank">
+                            DESCARGAR
+                        </a>
+                    </Button>
+                    <Button className={style.button} color="primary" variant="contained">
+                        <Link href={`/playground/${demo.slug}`}>
+                            ABRIR DEMO
+                        </Link>
+                    </Button>
+                </div>
+                <div className={style.third}>
                     <span>{demo.vote_data.current_votes.down}</span>
                     <IconButton onClick={handleUnlike}>
                         <Icon>thumb_down</Icon>
@@ -100,7 +107,7 @@ const DemoDetails = ({ demo }) => {
                     </IconButton>
                 </div>
             </nav>
-            {demo.long_desc.map((desc,i) => {
+            {demo.long_desc.map((desc, i) => {
                 if (desc.type == "normal") {
                     return <p key={i} className={`${style.detailText} ${style.normal}`}>{desc.text}</p>
                 }

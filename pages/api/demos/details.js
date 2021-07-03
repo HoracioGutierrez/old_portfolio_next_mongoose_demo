@@ -28,11 +28,11 @@ handler.get(async (req, res) => {
             projection.short_desc = 0
             projection.thumbnail_url = 0
             projection.vote_data = 0
+            projection.repository_url = 0
         }
 
         const demo = await Demo.findOne(query, projection)
         res.json({ ok: true, data: demo, error: null })
-
 
     } catch (error) {
         res.status(500).json({ ok: false, data: null, error })

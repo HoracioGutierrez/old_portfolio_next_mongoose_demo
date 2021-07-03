@@ -33,9 +33,15 @@
 }
 
 .button {
+    margin: 5px 0!important;
+    width: 100%;
     a {
         color: white;
         text-decoration: none;
+    }
+    
+    @media screen and (min-width : 800px) {
+        margin: 0 5px!important;
     }
 }
 
@@ -43,7 +49,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 50px;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .date {
@@ -51,4 +58,35 @@
     font-style: italic;
     font-weight: 200;
     font-size: 14px;
+}
+
+.first {
+    margin: 10px 0;
+    @media screen and (min-width:800px){
+        flex-grow: 1;
+    }
+}
+
+.second {
+    order: -1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    @media screen and (min-width:800px){
+        order: unset;
+        width: unset;
+        flex-direction: row;
+        align-items: center;
+        flex-grow: 1;
+    }
+}
+
+.third {
+    @media screen and (min-width:800px){
+        flex-grow: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
 }
