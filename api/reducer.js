@@ -1,4 +1,4 @@
-import { CARD_TOGGLE, DARK_TOGGLE, DEMOS_REQUEST_ERROR, DEMOS_REQUEST_PENDING, DEMOS_REQUEST_SUCCESS, DEMO_DETAIL_REQUEST_ERROR, DEMO_DETAIL_REQUEST_PENDING, DEMO_DETAIL_REQUEST_SUCCESS, DEMO_SET_CURRENT, LIKE, NOTIFICATION_HIDE, NOTIFICATION_SHOW, UNLIKE } from "./actionConstants"
+import { CARD_TOGGLE, DARK_TOGGLE, DEMOS_REQUEST_ERROR, DEMOS_REQUEST_PENDING, DEMOS_REQUEST_SUCCESS, DEMO_DETAIL_REQUEST_ERROR, DEMO_DETAIL_REQUEST_PENDING, DEMO_DETAIL_REQUEST_SUCCESS, DEMO_SET_CURRENT, LIKE, NEW_TAB_HIDE, NEW_TAB_SHOW, NOTIFICATION_HIDE, NOTIFICATION_SHOW, UNLIKE } from "./actionConstants"
 
 export const init = {
     dark: false,
@@ -9,150 +9,172 @@ export const init = {
         type: "info",
         time: 2000
     },
-    demos : {
-        request : {
-            pending : false,
-            error : "",
-            requested : false,
-            full : false
+    demos: {
+        request: {
+            pending: false,
+            error: "",
+            requested: false,
+            full: false
         },
-        list : [],
-        filtered : [],
-        current : {
-            requested : false,
-            pending : false,
-            error : "",
-            full : false
+        list: [],
+        filtered: [],
+        current: {
+            requested: false,
+            pending: false,
+            error: "",
+            full: false
         }
+    },
+    new_tab : {
+        show : false,
+        index : 2,
+        title : ""
     }
 }
 
 const reducer = (state = init, action) => {
     switch (action.type) {
-        case UNLIKE : 
-        return {
-            ...state,
-            demos : {
-                ...state.demos,
-                current : {
-                    ...state.demos.current,
-                    vote_data : {
-                        ...state.demos.current.vote_data,
-                        current_votes : {
-                            ...state.demos.current.vote_data.current_votes,
-                            down : state.demos.current.vote_data.current_votes.down + 1
-                        }
-                    }
-                }
-            }
-        }
-        case LIKE : 
+        case NEW_TAB_HIDE:
             return {
                 ...state,
-                demos : {
+                new_tab : {
+                    ...state.new_tab,
+                    show : false
+                }
+            }
+        case NEW_TAB_SHOW:
+            return {
+                ...state,
+                new_tab : {
+                    ...state.new_tab,
+                    show : true,
+                    title : action.title
+                }
+            }
+        case UNLIKE:
+            return {
+                ...state,
+                demos: {
                     ...state.demos,
-                    current : {
+                    current: {
                         ...state.demos.current,
-                        vote_data : {
+                        vote_data: {
                             ...state.demos.current.vote_data,
-                            current_votes : {
+                            current_votes: {
                                 ...state.demos.current.vote_data.current_votes,
-                                up : state.demos.current.vote_data.current_votes.up + 1
+                                down: state.demos.current.vote_data.current_votes.down + 1
                             }
                         }
                     }
                 }
             }
-        case DEMO_DETAIL_REQUEST_ERROR : 
+        case LIKE:
             return {
                 ...state,
-                demos : {
+                demos: {
                     ...state.demos,
-                    current : {
+                    current: {
                         ...state.demos.current,
-                        pending : false,
-                        error : action.error
+                        vote_data: {
+                            ...state.demos.current.vote_data,
+                            current_votes: {
+                                ...state.demos.current.vote_data.current_votes,
+                                up: state.demos.current.vote_data.current_votes.up + 1
+                            }
+                        }
                     }
                 }
             }
-        case DEMO_DETAIL_REQUEST_SUCCESS : 
+        case DEMO_DETAIL_REQUEST_ERROR:
             return {
                 ...state,
-                demos : {
+                demos: {
                     ...state.demos,
-                    current : {
+                    current: {
                         ...state.demos.current,
-                        pending : false,
+                        pending: false,
+                        error: action.error
+                    }
+                }
+            }
+        case DEMO_DETAIL_REQUEST_SUCCESS:
+            return {
+                ...state,
+                demos: {
+                    ...state.demos,
+                    current: {
+                        ...state.demos.current,
+                        pending: false,
                         ...action.details,
-                        requested : true,
-                        full : true
+                        requested: true,
+                        full: true
                     }
                 }
             }
-        case DEMO_DETAIL_REQUEST_PENDING : 
+        case DEMO_DETAIL_REQUEST_PENDING:
             return {
                 ...state,
-                demos : {
+                demos: {
                     ...state.demos,
-                    current : {
+                    current: {
                         ...state.demos.current,
-                        pending : true
+                        pending: true
                     }
                 }
             }
         case DEMO_SET_CURRENT:
             return {
                 ...state,
-                demos : {
+                demos: {
                     ...state.demos,
-                    current : {
+                    current: {
                         ...state.demos.current,
                         ...action.current,
-                        requested : true
+                        requested: true
                     }
                 }
             }
-        case DEMOS_REQUEST_ERROR :
+        case DEMOS_REQUEST_ERROR:
             return {
                 ...state,
-                demos : {
+                demos: {
                     ...state.demos,
-                    request : {
-                        pending : false,
-                        error : action.error
+                    request: {
+                        pending: false,
+                        error: action.error
                     }
                 }
             }
-        case DEMOS_REQUEST_SUCCESS :
+        case DEMOS_REQUEST_SUCCESS:
             return {
                 ...state,
-                demos : {
+                demos: {
                     ...state.demos,
-                    request : {
-                        pending : false,
-                        error : "",
-                        requested : true,
-                        full : true
+                    request: {
+                        pending: false,
+                        error: "",
+                        requested: true,
+                        full: true
                     },
-                    list : action.demos,
-                    filtered : action.demos
+                    list: action.demos,
+                    filtered: action.demos
                 }
             }
-        case DEMOS_REQUEST_PENDING :
+        case DEMOS_REQUEST_PENDING:
             return {
                 ...state,
-                demos : {
+                demos: {
                     ...state.demos,
-                    request : {
-                        pending : true,
-                        error : ""
+                    request: {
+                        pending: true,
+                        error: ""
                     }
                 }
             }
         case NOTIFICATION_HIDE:
             return {
                 ...state,
-                notification : { ...init.notification }
+                notification: { ...init.notification }
             }
         case NOTIFICATION_SHOW:
             return {

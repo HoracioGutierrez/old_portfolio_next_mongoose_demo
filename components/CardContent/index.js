@@ -12,15 +12,22 @@ import { useEffect } from "react";
 const Content = ({ children }) => {
 
     const open = useSelector(({ card_open }) => card_open)
+    const new_tab = useSelector(({ new_tab }) => new_tab)
     const [tab, setTab] = useState(0)
     const matches = useMediaQuery("(min-width:800px)")
     const router = useRouter()
     const [rutas] = useState(["/", "/demos"])
 
-    useEffect(()=>{
+    useEffect(() => {
         const ruta = rutas.indexOf(router.pathname)
         setTab(ruta)
-    },[])
+    }, [])
+
+    useEffect(()=>{
+        if(new_tab.show){
+            setTab(new_tab.index)
+        }
+    },[new_tab.show])
 
     const handleChange = (e, tab) => {
         setTab(tab)
@@ -40,6 +47,7 @@ const Content = ({ children }) => {
             >
                 <Tab label="Bio" id="bio" className={style.tabItem} />
                 <Tab label="Demos" id="demos" />
+                {new_tab.show && <Tab label={new_tab.title}/>}
             </Tabs>
             <CardContent component="main" className={style.cardContent}>
                 {children}

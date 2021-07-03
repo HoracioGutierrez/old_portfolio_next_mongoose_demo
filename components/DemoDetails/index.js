@@ -11,8 +11,9 @@ import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { sendLike, sendUnlike } from "../../api/actions";
+import { hideNewTab, sendLike, sendUnlike, showNewTab } from "../../api/actions";
 import axios from "axios";
+import { useEffect } from "react";
 
 
 moment.locale("es", {
@@ -23,6 +24,16 @@ const DemoDetails = ({ demo }) => {
 
     const [open, setOpen] = useState(false)
     const dispatch = useDispatch()
+
+    useEffect(()=>{
+
+        dispatch(showNewTab(demo.title))
+
+        return () => {
+            dispatch(hideNewTab())
+        }
+        
+    },[])
 
     const formatedDate = (date) => {
         return moment(date).format("Do [de] MMMM, YYYY")
@@ -89,13 +100,13 @@ const DemoDetails = ({ demo }) => {
                     </IconButton>
                 </div>
             </nav>
-            {demo.long_desc.map(desc => {
+            {demo.long_desc.map((desc,i) => {
                 if (desc.type == "normal") {
-                    return <p className={`${style.detailText} ${style.normal}`}>{desc.text}</p>
+                    return <p key={i} className={`${style.detailText} ${style.normal}`}>{desc.text}</p>
                 }
                 if (desc.type == "code") {
                     return (
-                        <SyntaxHighlighter className={`${style.detailText} ${style.code}`} style={anOldHope} showLineNumbers language={desc.syntax}>
+                        <SyntaxHighlighter key={i} className={`${style.detailText} ${style.code}`} style={anOldHope} showLineNumbers language={desc.syntax}>
                             {desc.text}
                         </SyntaxHighlighter>
                     )
