@@ -30,12 +30,38 @@ export const init = {
 const reducer = (state = init, action) => {
     switch (action.type) {
         case UNLIKE : 
-            return {
-                ...state
+        return {
+            ...state,
+            demos : {
+                ...state.demos,
+                current : {
+                    ...state.demos.current,
+                    vote_data : {
+                        ...state.demos.current.vote_data,
+                        current_votes : {
+                            ...state.demos.current.vote_data.current_votes,
+                            down : state.demos.current.vote_data.current_votes.down + 1
+                        }
+                    }
+                }
             }
+        }
         case LIKE : 
             return {
-                ...state
+                ...state,
+                demos : {
+                    ...state.demos,
+                    current : {
+                        ...state.demos.current,
+                        vote_data : {
+                            ...state.demos.current.vote_data,
+                            current_votes : {
+                                ...state.demos.current.vote_data.current_votes,
+                                up : state.demos.current.vote_data.current_votes.up + 1
+                            }
+                        }
+                    }
+                }
             }
         case DEMO_DETAIL_REQUEST_ERROR : 
             return {

@@ -17,7 +17,7 @@ handler.post(async (req, res) => {
 
         const new_vote = {
             created_at: new Date(),
-            type : "upvote",
+            type : "downvote",
             ip
         }
 
@@ -25,7 +25,7 @@ handler.post(async (req, res) => {
 
         const update = {
             $inc: {
-                "vote_data.current_votes.up": 1
+                "vote_data.current_votes.down": 1
             },
             $push: {
                 "vote_data.done": new_vote

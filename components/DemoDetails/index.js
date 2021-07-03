@@ -38,19 +38,24 @@ const DemoDetails = ({ demo }) => {
 
     const handleLike = () => {
         axios
-            .post(`/api/like`,{slug:demo.slug})
+            .post(`/api/like`, { slug: demo.slug })
             .then(({ data: res }) => {
-                console.log(res)
                 dispatch(sendLike())
             })
-            .catch(error=>{
+            .catch(error => {
                 console.log(error)
             })
-
     }
 
     const handleUnlike = () => {
-        dispatch(sendUnlike())
+        axios
+            .post(`/api/unlike`, { slug: demo.slug })
+            .then(({ data: res }) => {
+                dispatch(sendUnlike())
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     return (
@@ -74,6 +79,7 @@ const DemoDetails = ({ demo }) => {
                     </Link>
                 </Button>
                 <div>
+                    <span>{demo.vote_data.current_votes.down}</span>
                     <IconButton onClick={handleUnlike}>
                         <Icon>thumb_down</Icon>
                     </IconButton>
