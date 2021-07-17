@@ -1,6 +1,7 @@
 import dbConnect from "../../../db/connect"
 import Mensaje from "../../../models/Mensaje"
 import nc from "next-connect"
+import nodemailer from "nodemailer"
 
 const handler = nc()
 
@@ -11,6 +12,23 @@ handler.post(async (req, res) => {
     try {
         await dbConnect()
 
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: "horacio.estevez@gmail.com",
+                pass: "opagjugzthhxnylt"
+            }
+        })
+
+        const mailOptions = {
+            from: email,
+            to: "horacio.estevez@gmail.com",
+            subject: `Mensaje desde ${email}`,
+            text: message
+        }
+
+        const res_mail = await transporter.sendMail(mailOptions)
+        
         const new_mensaje = { name, email, message }
 
         await new Mensaje(new_mensaje).save()
