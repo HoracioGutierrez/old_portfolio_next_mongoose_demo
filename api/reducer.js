@@ -1,4 +1,4 @@
-import { CARD_TOGGLE, DARK_TOGGLE, DEMOS_REQUEST_ERROR, DEMOS_REQUEST_PENDING, DEMOS_REQUEST_SUCCESS, DEMO_DETAIL_REQUEST_ERROR, DEMO_DETAIL_REQUEST_PENDING, DEMO_DETAIL_REQUEST_SUCCESS, DEMO_SET_CURRENT, LIKE, NEW_TAB_HIDE, NEW_TAB_SHOW, NOTIFICATION_HIDE, NOTIFICATION_SHOW, UNLIKE } from "./actionConstants"
+import { CARD_TOGGLE, CHAT_CHANGE, CHAT_CLOSE, CHAT_OPEN, DARK_TOGGLE, DEMOS_REQUEST_ERROR, DEMOS_REQUEST_PENDING, DEMOS_REQUEST_SUCCESS, DEMO_DETAIL_REQUEST_ERROR, DEMO_DETAIL_REQUEST_PENDING, DEMO_DETAIL_REQUEST_SUCCESS, DEMO_SET_CURRENT, LIKE, NEW_TAB_HIDE, NEW_TAB_SHOW, NOTIFICATION_HIDE, NOTIFICATION_SHOW, UNLIKE } from "./actionConstants"
 
 export const init = {
     dark: false,
@@ -25,30 +25,62 @@ export const init = {
             full: false
         }
     },
-    new_tab : {
-        show : false,
-        index : 2,
-        title : ""
+    new_tab: {
+        show: false,
+        index: 2,
+        title: ""
+    },
+    chat : {
+        open: false,
+        pending : false,
+        error : "",
+        name : "",
+        email : "",
+        message : ""
     }
 }
 
 const reducer = (state = init, action) => {
     switch (action.type) {
+        case CHAT_CHANGE :
+            return {
+                ...state,
+                chat : {
+                    ...state.chat,
+                    [action.target] : action.value
+                }
+            }
+        case CHAT_CLOSE:
+            return {
+                ...state,
+                chat : {    
+                    ...state.chat,
+                    open : false
+                }
+            }
+        case CHAT_OPEN:
+            return {
+                ...state,
+                chat : {    
+                    ...state.chat,
+                    open : true
+                }
+            }
         case NEW_TAB_HIDE:
             return {
                 ...state,
-                new_tab : {
+                new_tab: {
                     ...state.new_tab,
-                    show : false
+                    show: false
                 }
             }
         case NEW_TAB_SHOW:
             return {
                 ...state,
-                new_tab : {
+                new_tab: {
                     ...state.new_tab,
-                    show : true,
-                    title : action.title
+                    show: true,
+                    title: action.title
                 }
             }
         case UNLIKE:

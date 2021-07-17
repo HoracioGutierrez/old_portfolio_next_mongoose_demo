@@ -6,7 +6,7 @@ import Menu from "@material-ui/core/Menu"
 import MenuItem from '@material-ui/core/MenuItem'
 import style from "./CardFooter.module.scss"
 import { useDispatch } from 'react-redux';
-import { darkToggle, showNotification } from '../../api/actions';
+import { chatOpen, darkToggle, showNotification } from '../../api/actions';
 import useDark from "../../hooks/useDark";
 
 const CardFooter = () => {
@@ -41,11 +41,15 @@ const CardFooter = () => {
         dispatch(darkToggle())
     }
 
+    const handleOpenChat = () => {
+        dispatch(chatOpen())
+    }
+
     return (
         <footer className={`${style.cardFooter} ${dark ? style.dark : style.light }`}>
             <CardActions className={style.cardFooterContainer}>
                 <div className={style.cardFooterDivider}>
-                    <IconButton className={style.cardFooterButton}>
+                    <IconButton onClick={handleOpenChat} className={style.cardFooterButton}>
                         <Icon>send</Icon>
                     </IconButton>
                     <IconButton onClick={handleCopyUrl} className={style.cardFooterButton}>
