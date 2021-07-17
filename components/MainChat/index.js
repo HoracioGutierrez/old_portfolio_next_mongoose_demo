@@ -8,6 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { useDispatch, useSelector } from 'react-redux';
 import { chatChange, chatClose } from '../../api/actions';
 import style from "./MainChat.module.scss"
+import axios from 'axios';
 
 const MainChat = () => {
 
@@ -24,6 +25,23 @@ const MainChat = () => {
         dispatch(chatChange(target, value))
     }
 
+    const handleSubmit = () => {
+        axios
+        .post('/api/chat/send', {
+            name: name,
+            email: email,
+            message: message
+        })
+        .then(() => {
+            //dispatch()
+        })
+        .catch((err) => {
+            console.log(err)
+            //dispatch()
+        }
+
+    }
+
     return (
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle> Enviar Mensaje </DialogTitle>
@@ -38,7 +56,8 @@ const MainChat = () => {
                 <TextField onChange={handleChange} autoFocus margin="normal" id="message" type="text" label="Mensaje" fullWidth multiline rows={4} value={message}/>
             </div>
             <DialogActions>
-                <Button color="primary" onClick={handleClose}>Cerrar</Button>
+                <Button color="primary" onClick={handleSubmit}>ENVIAR</Button>
+                <Button color="primary" onClick={handleClose}>CERRAR</Button>
             </DialogActions>
         </Dialog>
     );
