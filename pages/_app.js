@@ -7,6 +7,7 @@ import PlaygroundMainContainer from '../components/PlaygroundMainHeader'
 import useDark from '../hooks/useDark'
 import "./global.scss"
 import { useRouter } from 'next/router'
+import Head from "next/head"
 
 const CustomApp = ({ Component, pageProps }) => {
 
@@ -15,21 +16,31 @@ const CustomApp = ({ Component, pageProps }) => {
 
     if(router.pathname.includes("playground")){
         return (
-            <div id="playground-container">
-                <PlaygroundMainContainer/>
-                <Component {...pageProps}/>
-            </div>
+            <>
+                <Head>
+                    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+                </Head>
+                <div id="playground-container">
+                    <PlaygroundMainContainer/>
+                    <Component {...pageProps}/>
+                </div>
+            </>
         )
     }else{
         return (
-            <div id="container" className={`${dark ? "dark" : "light"}`}>
-                <MainCard>
-                    <Component {...pageProps} />
-                </MainCard>
-                <MainChat />
-                <MainNotification />
-                <MainFooter />
-            </div>
+            <>
+                <Head>
+                    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+                </Head>
+                <div id="container" className={`${dark ? "dark" : "light"}`}>
+                    <MainCard>
+                        <Component {...pageProps} />
+                    </MainCard>
+                    <MainChat />
+                    <MainNotification />
+                    <MainFooter />
+                </div>
+            </>
         )
     }
 }
