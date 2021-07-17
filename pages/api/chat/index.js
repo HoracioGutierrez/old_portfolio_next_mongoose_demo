@@ -2,6 +2,7 @@ import dbConnect from "../../../db/connect"
 import Mensaje from "../../../models/Mensaje"
 import nc from "next-connect"
 import nodemailer from "nodemailer"
+import template from "./template"
 
 const handler = nc()
 
@@ -23,8 +24,9 @@ handler.post(async (req, res) => {
         const mailOptions = {
             from: email,
             to: "horacio.estevez@gmail.com",
-            subject: `Mensaje desde ${email}`,
-            text: message
+            subject: `Nuevo mensaje del portfolio!`,
+            text: message,
+            html : template(email,message)
         }
 
         const res_mail = await transporter.sendMail(mailOptions)

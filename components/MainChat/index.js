@@ -26,7 +26,6 @@ const MainChat = () => {
     }
 
     const handleSubmit = () => {
-
         axios
             .post('/api/chat', {
                 name: name,
@@ -42,8 +41,6 @@ const MainChat = () => {
             .finally(() => {
                 dispatch(chatClose())
             })
-
-
     }
 
     return (
