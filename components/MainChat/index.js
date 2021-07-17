@@ -47,7 +47,7 @@ const MainChat = () => {
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle> Enviar Mensaje </DialogTitle>
             <DialogContent>
-                <DialogContentText> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur repudiandae veritatis molestias architecto eos doloremque! Assumenda officia sint tempore deserunt?</DialogContentText>
+                <DialogContentText> Con este formulario podes saludarme , darme trabajo o insultarme si es necesario... intentemos que no sea necesario.</DialogContentText>
             </DialogContent>
             <div className={style.chatForm}>
                 <TextField onChange={handleChange} autoFocus margin="normal" id="name" type="text" label="Nombre" fullWidth value={name} />
