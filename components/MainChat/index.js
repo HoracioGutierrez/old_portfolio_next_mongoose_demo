@@ -6,13 +6,13 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useDispatch, useSelector } from 'react-redux';
-import { chatChange, chatClose } from '../../api/actions';
+import { chatChange, chatClose, showNotification } from '../../api/actions';
 import style from "./MainChat.module.scss"
 import axios from 'axios';
 
 const MainChat = () => {
 
-    const {open,name,email,message} = useSelector(({chat}) => chat);
+    const { open, name, email, message } = useSelector(({ chat }) => chat);
     const dispatch = useDispatch()
 
     const handleClose = () => {
@@ -28,18 +28,21 @@ const MainChat = () => {
     const handleSubmit = () => {
 
         axios
-        .post('/api/chat/send', {
-            name: name,
-            email: email,
-            message: message
-        })
-        .then(() => {
-            //dispatch()
-        })
-        .catch((err) => {
-            console.log(err)
-            //dispatch()
-        })
+            .post('/api/chat', {
+                name: name,
+                email: email,
+                message: message
+            })
+            .then(({ data: res }) => {
+                dispatch(showNotification("Mensaje enviado!", "success"))
+            })
+            .catch((err) => {
+                dispatch(showNotification("Error al enviar mensaje", "error"))
+            })
+            .finally(() => {
+                dispatch(chatClose())
+            })
+
 
     }
 
@@ -50,15 +53,15 @@ const MainChat = () => {
                 <DialogContentText> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur repudiandae veritatis molestias architecto eos doloremque! Assumenda officia sint tempore deserunt?</DialogContentText>
             </DialogContent>
             <div className={style.chatForm}>
-                <TextField onChange={handleChange} autoFocus margin="normal" id="name" type="text" label="Nombre" fullWidth value={name}/>
+                <TextField onChange={handleChange} autoFocus margin="normal" id="name" type="text" label="Nombre" fullWidth value={name} />
 
-                <TextField onChange={handleChange} autoFocus margin="normal" id="email" type="emai" label="Email" fullWidth value={email}/>
+                <TextField onChange={handleChange} autoFocus margin="normal" id="email" type="emai" label="Email" fullWidth value={email} />
 
-                <TextField onChange={handleChange} autoFocus margin="normal" id="message" type="text" label="Mensaje" fullWidth multiline rows={4} value={message}/>
+                <TextField onChange={handleChange} autoFocus margin="normal" id="message" type="text" label="Mensaje" fullWidth multiline rows={4} value={message} />
             </div>
             <DialogActions>
-                <Button color="primary" onClick={handleSubmit}>ENVIAR</Button>
                 <Button color="primary" onClick={handleClose}>CERRAR</Button>
+                <Button color="primary" onClick={handleSubmit}>ENVIAR</Button>
             </DialogActions>
         </Dialog>
     );
