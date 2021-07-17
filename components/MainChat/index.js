@@ -26,6 +26,7 @@ const MainChat = () => {
     }
 
     const handleSubmit = () => {
+
         axios
         .post('/api/chat/send', {
             name: name,
@@ -38,7 +39,7 @@ const MainChat = () => {
         .catch((err) => {
             console.log(err)
             //dispatch()
-        }
+        })
 
     }
 
