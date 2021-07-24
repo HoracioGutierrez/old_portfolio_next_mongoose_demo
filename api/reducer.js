@@ -56,7 +56,88 @@ const reducer = (state = init, action) => {
                     filters: {
                         ...state.demos.filters,
                         search: action.value
-                    }
+                    },
+                    filtered: state.demos.list.filter(demo => demo.title.toLowerCase().includes(action.value.toLowerCase()))
+                }
+            }
+        case CARD_TOGGLE :
+            return {
+                ...state,
+                card_open: !state.card_open
+            }
+        case CHAT_CHANGE :
+            return {
+                ...state,
+                chat: {
+                    ...state.chat,
+                    ...action.value
+                }
+            }
+        case CHAT_CLOSE :
+            return {
+                ...state,
+                chat: {
+                    ...state.chat,
+                    open: false
+                }
+            }
+        case CHAT_OPEN :
+            return {
+                ...state,
+                chat: {
+                    ...state.chat,
+                    open: true
+                }
+            }
+        case LIKE :
+            return {
+                ...state,
+                demos: {
+                    ...state.demos,
+                    list: state.demos.list.map(demo => {
+                        if (demo.id === action.demo.id) {
+                            demo.likes++
+                        }
+                        return demo
+                    })
+                }
+            }
+        case UNLIKE :
+            return {
+                ...state,
+                demos: {
+                    ...state.demos,
+                    list: state.demos.list.map(demo => {
+                        if (demo.id === action.demo.id) {
+                            demo.likes--
+                        }
+                        return demo
+                    })
+                }
+            }
+        case NEW_TAB_SHOW :
+            return {
+                ...state,
+                new_tab: {
+                    ...state.new_tab,
+                    show: true,
+                    title: action.value
+                }
+            }
+        case NEW_TAB_HIDE :
+            return {
+                ...state,
+                new_tab: {
+                    ...state.new_tab,
+                    show: false,
+                    title: ""
+                }
+            }
+        case NOTIFICATION_SHOW :
+            return {
+                ...state,
+                notification: {
+                    ...state.notification,
                 }
             }
         case CHAT_CHANGE :
