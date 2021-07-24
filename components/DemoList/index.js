@@ -1,10 +1,14 @@
+import DemoListFilter from "../DemoListFilter";
 import DemoListItem from "../DemoListItem";
 
-const DemoList = ({list}) => {
+const DemoList = ({ list }) => {
     return (
-        <section id="demo-list">
-            {list.map(demo=>  <DemoListItem key={demo.id} demo={demo}/> )}
-        </section>
+        <>
+            <DemoListFilter />
+            <section id="demo-list">
+                {list.map(demo => <DemoListItem key={demo.id} demo={demo} />)}
+            </section>
+        </>
     );
 }
 
