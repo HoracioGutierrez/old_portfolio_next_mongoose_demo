@@ -1,4 +1,4 @@
-import { CARD_TOGGLE, CHAT_CHANGE, CHAT_CLOSE, CHAT_OPEN, DARK_TOGGLE, DEMOS_REQUEST_ERROR, DEMOS_REQUEST_PENDING, DEMOS_REQUEST_SUCCESS, DEMO_DETAIL_REQUEST_ERROR, DEMO_DETAIL_REQUEST_PENDING, DEMO_DETAIL_REQUEST_SUCCESS, DEMO_SET_CURRENT, LIKE, NEW_TAB_HIDE, NEW_TAB_SHOW, NOTIFICATION_HIDE, NOTIFICATION_SHOW, UNLIKE } from "./actionConstants"
+import { CARD_TOGGLE, CHAT_CHANGE, CHAT_CLOSE, CHAT_OPEN, DARK_TOGGLE, DEMOS_REQUEST_ERROR, DEMOS_REQUEST_PENDING, DEMOS_REQUEST_SUCCESS, DEMO_DETAIL_REQUEST_ERROR, DEMO_DETAIL_REQUEST_PENDING, DEMO_DETAIL_REQUEST_SUCCESS, DEMO_SET_CURRENT, FILTER_SEARCH_CHANGE, LIKE, NEW_TAB_HIDE, NEW_TAB_SHOW, NOTIFICATION_HIDE, NOTIFICATION_SHOW, UNLIKE } from "./actionConstants"
 
 export const init = {
     dark: false,
@@ -10,6 +10,12 @@ export const init = {
         time: 2000
     },
     demos: {
+        filters : {
+            search : "",
+            tags : [],
+            difficulty : "",
+            created_at : "asc",
+        },
         request: {
             pending: false,
             error: "",
@@ -42,6 +48,17 @@ export const init = {
 
 const reducer = (state = init, action) => {
     switch (action.type) {
+        case FILTER_SEARCH_CHANGE :
+            return {
+                ...state,
+                demos: {
+                    ...state.demos,
+                    filters: {
+                        ...state.demos.filters,
+                        search: action.value
+                    }
+                }
+            }
         case CHAT_CHANGE :
             return {
                 ...state,

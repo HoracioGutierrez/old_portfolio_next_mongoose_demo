@@ -35,7 +35,7 @@ const Demos = () => {
             <Head>
                 <title>HG - Demos</title>
             </Head>
-            <DemoList list={list}/>
+            <DemoList list={filtered}/>
         </>
     )
 }

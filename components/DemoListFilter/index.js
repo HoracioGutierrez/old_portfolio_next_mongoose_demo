@@ -3,20 +3,26 @@ import Icon from '@material-ui/core/Icon';
 import { TextField } from '@material-ui/core';
 import { useState } from 'react';
 import style from "./DemoListFilter.module.scss"
+import { useDispatch, useSelector } from 'react-redux';
+import { filterSearchChange } from '../../api/actions';
+import { useEffect } from 'react';
 
 const DemoListFilter = () => {
 
+    const dispatch = useDispatch()
     const [expanded, setExpanded] = useState(false);
-    const [value, setValue] = useState('');
+    const {search} = useSelector(({demos:{filters}})=>filters);
 
     const handleExpandInput = () => {
         setExpanded(!expanded);
-        setValue('');
+        dispatch(filterSearchChange(""))
     };
 
     const handleInputChange = event => {
-        setValue(event.target.value);
+        dispatch(filterSearchChange(event.target.value));
     };
+
+    useEffect(() => dispatch(filterSearchChange("")) , []);
 
     return (
         <section>
@@ -29,7 +35,7 @@ const DemoListFilter = () => {
             <IconButton onClick={handleExpandInput}>
                 <Icon>search</Icon>
             </IconButton>
-            <TextField autoFocus={true} id="standard-basic" size="medium" className={` ${style.animated} ${ expanded ? style.open : style.closed }`} value={value} onChange={handleInputChange} />
+            <TextField autoFocus={true} id="standard-basic" size="medium" className={` ${style.animated} ${ expanded ? style.open : style.closed }`} value={search} onChange={handleInputChange} />
         </section>
     );
 }
