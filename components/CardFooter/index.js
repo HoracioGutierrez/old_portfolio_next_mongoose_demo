@@ -39,6 +39,7 @@ const CardFooter = () => {
 
     const handleToggleDark = () => {
         dispatch(darkToggle())
+        handleClose()
     }
 
     const handleOpenChat = () => {
