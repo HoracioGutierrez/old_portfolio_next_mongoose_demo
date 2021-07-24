@@ -1,0 +1,11 @@
+.open {
+    width: 200px;
+}
+
+.closed {
+    width: 0;
+}
+
+.animated {
+    transition: all 0.1s ease-in-out;
+}
